@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: activity-service
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/activity-service
+      database: activity-service
+
+server:
+  port: 8082

@@ -1,0 +1,9 @@
+package com.fitness.activityservice.model;
+
+import lombok.Data;
+
+@Data
+@d
+public class Activity {
+
+}
