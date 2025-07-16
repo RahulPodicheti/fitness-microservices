@@ -9,9 +9,11 @@ import com.fitness.userservice.repositories.UserRepository;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService {
 	
 	private UserRepository userRepository;
@@ -52,6 +54,7 @@ public class UserService {
 	}
 
 	public boolean validateUser(String userId) {
+		log.info("Calling User Validation API for userId: {}"+userId);
 		return userRepository.existsById(userId);
 	}
 }

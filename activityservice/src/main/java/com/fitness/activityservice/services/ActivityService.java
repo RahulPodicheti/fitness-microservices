@@ -10,15 +10,22 @@ import com.fitness.activityservice.dto.ActivityResponse;
 import com.fitness.activityservice.model.Activity;
 import com.fitness.activityservice.repositories.ActivityRepository;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ActivityService {
 
-	private ActivityRepository activityRepository;
+	private final ActivityRepository activityRepository;
+	private final UserValidationService userValidationService;
 
 	public ActivityResponse trackActivity(ActivityRequest request) {
+		
+		boolean isValidUser = userValidationService.validateUser(request.getUserId());
+		if(!isValidUser) {
+			throw new RuntimeException("Invalid User: "+request.getUserId());
+		}
+		
 		Activity activity = Activity.builder()
 				.additionalMetrices(request.getAdditionalMetrices())
 				.calariesBurned(request.getCalariesBurned())
