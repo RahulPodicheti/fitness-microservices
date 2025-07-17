@@ -12,26 +12,26 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class UserValidationService {
-	private final WebClient userServiceWebClient;
-	
-	public boolean validateUser(String userId) {
-		log.info("Calling User Validation API for userId: {}"+userId);
-		try {
-			return userServiceWebClient
-					.get()
-					.uri("/api/users/{userId}/validate", userId)
-					.retrieve()
-					.bodyToMono(Boolean.class)
-					.block();
-		} catch (WebClientResponseException e) {
-			if(e.getStatusCode() == HttpStatus.NOT_FOUND) {
-				throw new RuntimeException("User not found: "+userId);
-			}else if(e.getStatusCode() == HttpStatus.BAD_REQUEST){
-				throw new RuntimeException("Invalid Request: "+userId);
-			}
-		}
-		return false;
-		
-	}
 
+    private final WebClient.Builder webClientBuilder;
+
+    public boolean validateUser(String userId) {
+        String url = "http://USER-SERVICE/api/users/" + userId + "/validate";
+        log.info("Calling User Validation API for userId: {}", userId);
+        try {
+            return webClientBuilder.build()
+                    .get()
+                    .uri(url)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+        } catch (WebClientResponseException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new RuntimeException("User not found: " + userId);
+            } else if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
+                throw new RuntimeException("Invalid Request: " + userId);
+            }
+        }
+        return false;
+    }
 }
