@@ -13,8 +13,9 @@ public class Activity {
 	@Id
 	private String id;
 	private String userId;
+	private String type;
 	private Integer duration;
-	private Integer calariesBurned;
+	private Integer CaloriesBurned;
 	private Map<String, Object> additionalMetrices;
 	private LocalDateTime startTime;
 	private LocalDateTime startedAt;
