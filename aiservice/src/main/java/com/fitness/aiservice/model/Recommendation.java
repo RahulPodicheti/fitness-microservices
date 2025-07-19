@@ -30,4 +30,8 @@ public class Recommendation {
 	
 	@CreatedDate
 	private LocalDateTime createdAt;
+
+    public Recommendation orElseThrow(Object object) {
+        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
+    }
 }

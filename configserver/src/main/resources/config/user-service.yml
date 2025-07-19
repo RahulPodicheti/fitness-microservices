@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update   # or 'create', 'create-drop', 'validate'
+      ddl-auto: update   # options: update, create, create-drop, validate
     show-sql: true
     properties:
       hibernate:
@@ -17,6 +17,6 @@ server:
   port: 8081
 
 eureka:
- client:
-  serviceUrl:
-   defaultZone: http://localhost:8761/eureka/
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
