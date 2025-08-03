@@ -12,9 +12,15 @@ server:
   port: 8082
 
 eureka:
- client:
-  serviceUrl:
-   defaultZone: http://localhost:8761/eureka/
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
 
 rabbitmq:
  exchange:

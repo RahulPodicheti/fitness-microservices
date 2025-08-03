@@ -3,13 +3,14 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8181/realms/fitness-oauth2/protocol/openid-connect/certs
+          jwk-set-uri: http://localhost:8181/realms/fitnessRealm/protocol/openid-connect/certs
+
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
-          lower-case-service-id: false
+          lower-case-service-id: true  # usually better for matching service names
       routes:
         - id: user-service
           uri: lb://USER-SERVICE
